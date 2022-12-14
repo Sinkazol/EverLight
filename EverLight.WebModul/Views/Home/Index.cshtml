@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Hiba bejelentő";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ever Light</h1>
+    <h1 class="display-6" >Hiba bejelentés</h1>
+    <br/>
+    <form action="/home/createOrder " method="get">
+        <label for="PostCode"> irányítószám:</label><br>
+        <input type="text" id="PostCode" name="PostCode" value="1087"><br> 
+        <label for="City"> Város:</label><br>
+        <input type="text" id="City" name="City" value="Budapest"><br>
+        <label for="addres">utca , házszám:</label><br>
+        <input type="text" id="addres" name="addres" value="Üllői út 6"><br><br>
+        <input type="submit" value="Küld">
+    </form>
+</div>
