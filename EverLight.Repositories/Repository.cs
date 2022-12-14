@@ -3,7 +3,7 @@ using EverLight.DTOs;
 
 namespace EverLight.Repositories
 {
-    public class Repository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DataContext dataContext;
 

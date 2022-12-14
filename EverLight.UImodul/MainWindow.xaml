@@ -27,14 +27,9 @@
             <ComboBox Margin="10" Visibility="{Binding EmployeeSelectionVisible}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
             </ComboBox>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Orders}" x:Name="OrderView"  >
-            <ListView.Resources>
-                <Style TargetType="{x:Type GridViewColumnHeader}">
-                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                </Style>
-            </ListView.Resources>
-            <ListView.View >
-                <GridView >
+        <ListView Grid.Row="1" ItemsSource="{Binding Orders}" x:Name="OrderView">
+            <ListView.View>
+                <GridView>
                     <GridViewColumn  Header="Id" Width="100" DisplayMemberBinding="{Binding Id}" />
                     <GridViewColumn Header="Iránzító szám" Width="auto" DisplayMemberBinding="{Binding PostCode}" />
                     <GridViewColumn Header="Város" Width="120" DisplayMemberBinding="{Binding City}" />

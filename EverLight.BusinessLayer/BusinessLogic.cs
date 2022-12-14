@@ -5,15 +5,15 @@ namespace EverLight.BusinessLayer
 {
     public class BusinessLogic
     {
-        private readonly Repository<Order> orderRepo;
-        private readonly Repository<Employee> employeeRepo;
+        private readonly IRepository<Order> orderRepo;
+        private readonly IRepository<Employee> employeeRepo;
 
 
         //public BusinessLogic(Repository<Order> orderRepo)
         //{
         //    this.orderRepo = orderRepo;
         //}
-        public BusinessLogic(Repository<Order> orderRepo, Repository<Employee> employeeRepo)
+        public BusinessLogic(IRepository<Order> orderRepo, IRepository<Employee> employeeRepo)
         {
             this.orderRepo = orderRepo;
             this.employeeRepo = employeeRepo;
