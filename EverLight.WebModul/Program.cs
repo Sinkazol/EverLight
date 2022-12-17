@@ -1,3 +1,4 @@
+using EverLight.BusinessLayer;
 using EverLight.DTOs;
 
 namespace EverLight.WebModul
@@ -10,10 +11,7 @@ namespace EverLight.WebModul
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddSingleton<EverLight.DC.DataContext>();
-            builder.Services.AddSingleton<EverLight.Repositories.Repository<Order>>();
-            builder.Services.AddSingleton<EverLight.Repositories.Repository<Employee>>();
-            builder.Services.AddSingleton<EverLight.BusinessLayer.BusinessLogic>();
+            builder.Services.UseBusinessLogic();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

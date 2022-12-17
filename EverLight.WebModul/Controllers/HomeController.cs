@@ -29,9 +29,8 @@ namespace EverLight.WebModul.Controllers
                 City = City,
                 Address = addres,
                 Opened = DateTime.Now
-
             };
-            webBusinessLogic.CreateOrder(order);
+            ViewData["ordernumber"] = webBusinessLogic.CreateOrder(order);
             return View();
         }
 

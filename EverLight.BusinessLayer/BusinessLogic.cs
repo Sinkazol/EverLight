@@ -20,7 +20,7 @@ namespace EverLight.BusinessLayer
         }
         public int CreateOrder(Order order)
         {
-            return orderRepo.Create(order);
+            return orderRepo.Create(order).Id;
         }
 
         public IEnumerable<Order> GetAll()
@@ -32,10 +32,6 @@ namespace EverLight.BusinessLayer
         {
             return employeeRepo.GetAll();
 
-        }
-        public int CreateEmployee(Employee employee)
-        {
-            return employeeRepo.Create(employee);
         }
         public IEnumerable<Order> GetOpened()
         {
@@ -63,12 +59,16 @@ namespace EverLight.BusinessLayer
         }
         public IEnumerable<Order> GetOrdersby(Employee employee)
         {
+            if (employee == null)
+            {
+                return orderRepo.GetAll().OrderBy(x => x.EmployeeId);
+            }
             return orderRepo.GetAll().Where(x => x.EmployeeId == employee.Id);
         }
 
-        public IEnumerable<Employee> GetEmployeesBy(int id)
+        public string EmployeeBy(int id)
         {
-            return employeeRepo.GetAll().Where(x => x.Id == id);
+            return employeeRepo.GetAll().FirstOrDefault(x => x.Id == id)?.Name;
         }
 
         public void CompletOrder(int orderId, int employeeId, string selectedError)
@@ -81,10 +81,7 @@ namespace EverLight.BusinessLayer
                 order.Closed = DateTime.Now;
                 orderRepo.Update(order);
             }
-
         }
-
-
 
         // lekerdezesek
     }

@@ -2,6 +2,8 @@
 using EverLight.Repositories;
 using EverLight.BusinessLayer;
 using EverLight.DTOs;
+using Microsoft.Extensions.DependencyInjection;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace EverLight.ConsoleModul1
 {
@@ -9,11 +11,10 @@ namespace EverLight.ConsoleModul1
     {
         static void Main(string[] args)
         {
-
-            using DataContext DB = new();
-            var repo = new Repository<Order>(DB);
-            var empRepo = new Repository<Employee>(DB);
-            var businessLogic = new BusinessLogic(repo, empRepo);
+            var services = new ServiceCollection();
+            services.UseBusinessLogic();
+            Ioc.Default.ConfigureServices(services.BuildServiceProvider());
+            var businessLogic = Ioc.Default.GetService<BusinessLayer.BusinessLogic>();
             DateTime Date = DateTime.Now;
             DrawHeader(Date);
             PrintAllOpenedOrders(businessLogic);

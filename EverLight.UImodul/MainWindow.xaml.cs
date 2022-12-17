@@ -47,7 +47,7 @@ namespace EverLight.UImodul
                 {
                     File.WriteAllText(saveFileDialog.FileName, vm.XmlString());
                 }
-            } ;
+            } 
         }
     }
 }

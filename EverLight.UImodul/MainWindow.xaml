@@ -10,6 +10,9 @@
     <Window.DataContext>
         <viewmodel:MainWindowsViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <local:EmploeeIdNameConverter x:Key="EmploeeIdNameConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,14 +33,14 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Orders}" x:Name="OrderView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn  Header="Id" Width="100" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Id}" />
                     <GridViewColumn Header="Iránzító szám" Width="auto" DisplayMemberBinding="{Binding PostCode}" />
                     <GridViewColumn Header="Város" Width="120" DisplayMemberBinding="{Binding City}" />
                     <GridViewColumn Header="utca házszám" Width="200" DisplayMemberBinding="{Binding Address}" />
                     <GridViewColumn Header="Hiba jellege" Width="120" DisplayMemberBinding="{Binding ErrorType}" />
-                    <GridViewColumn Header="létrehozva" Width="150" DisplayMemberBinding="{Binding Opened}" />
-                    <GridViewColumn Header="lezárva" Width="150" DisplayMemberBinding="{Binding Closed}" />
-                    <GridViewColumn Header="munkát végezte" Width="auto" DisplayMemberBinding="{Binding EmployeeId}" />
+                    <GridViewColumn Header="Létrehozva" Width="150" DisplayMemberBinding="{Binding Opened}" />
+                    <GridViewColumn Header="Lezárva" Width="150" DisplayMemberBinding="{Binding Closed}" />
+                    <GridViewColumn Header="Munkát végezte" Width="auto" DisplayMemberBinding="{Binding EmployeeId, Converter={StaticResource EmploeeIdNameConverter}}" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using EverLight.DTOs;
+using EverLight.BusinessLayer;
 
 namespace EverLight.UImodul
 {
@@ -21,10 +22,7 @@ namespace EverLight.UImodul
         public App()
         {
             var services = new ServiceCollection();
-            services.AddSingleton<EverLight.DC.DataContext>();
-            services.AddSingleton<EverLight.Repositories.Repository<Order>>();
-            services.AddSingleton<EverLight.Repositories.Repository<Employee>>();
-            services.AddSingleton<EverLight.BusinessLayer.BusinessLogic>();
+            services.UseBusinessLogic();
             services.AddSingleton<EverLight.UImodul.ViewModel.MainWindowsViewModel>();
             Ioc.Default.ConfigureServices(services.BuildServiceProvider());
         }   

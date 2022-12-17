@@ -8,11 +8,11 @@ namespace EverLight.BusinessLogicTest
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void GetAllTest()
         {
             List<Order> orders = new List<Order>()
             {
-                new Order() { Id = 1,PostCode=1096,City="Budapest", Address = "ulloi ut", Opened=new DateTime(2002,12,25) }
+                new Order() { Id = 1, PostCode=1096, City="Budapest", Address = "ulloi ut", Opened=new DateTime(2002,12,25)}
             };
             var MoqOrderRepository = new Mock<IRepository<Order>>();
             var MoqEmployeeRepository = new Mock<IRepository<Employee>>();
@@ -23,7 +23,6 @@ namespace EverLight.BusinessLogicTest
             Assert.NotNull(order);
             Assert.Equal(orders.Count(), order.Count());
             Assert.Collection(orders, order => Assert.Equal(order.Id, order.Id));
-
         }
     }
 }

@@ -48,7 +48,8 @@ namespace EverLight.UImodul.ViewModel
                     if (value == 0)
                     {
                         EmployeeSelectionVisible = Visibility.Visible;
-                        Employees = businesLogic.GetAllEmployes().ToList(); 
+                        Employees = businesLogic.GetAllEmployes().ToList();
+                        Orders = businesLogic.GetOrdersby(Employees.FirstOrDefault()).ToList();
                     }
                     else EmployeeSelectionVisible = Visibility.Collapsed;
                     SetProperty(ref selectedSortType, value, "SelectedSortType");
@@ -60,7 +61,7 @@ namespace EverLight.UImodul.ViewModel
                     else DateSelectionVisible = Visibility.Collapsed;
                     if (value == 2)
                     {
-                        Orders = businesLogic.GetAll().OrderBy(x=>x.ErrorType).ToList();
+                        Orders = businesLogic.GetAll().OrderBy(x=>x.ErrorType).Where(x=>x.Closed!=null).ToList();
                     }
                 }
             }
@@ -111,6 +112,7 @@ namespace EverLight.UImodul.ViewModel
 
             Employees = businesLogic.GetAllEmployes().ToList();
             SelectedEmployee = Employees.FirstOrDefault();
+            SelectedSortType = 2;
         }
 
         public void Fill()

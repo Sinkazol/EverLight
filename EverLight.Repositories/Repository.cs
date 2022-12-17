@@ -11,12 +11,12 @@ namespace EverLight.Repositories
         {
             this.dataContext = dataContext;
         }
-        public int Create(T entity)
+        public T Create(T entity)
         {
             var ent = dataContext.Add(entity);
             dataContext.SaveChanges();
 
-            return ent.IsKeySet ? 1 : 0;
+            return ent.Entity;
         }
 
         public IEnumerable<T> GetAll()
