@@ -97,8 +97,8 @@ namespace EverLight.BusinessLogicTest
             Assert.NotNull(order);
             Assert.Collection(orders, order => Assert.Equal(order.Id, order.Id));
             Assert.Collection(orders, order => Assert.Null(order.Closed));
-            Assert.Collection(orders, order => Assert.StartsWith(109.ToString(),order.PostCode.ToString()));
-            Assert.Collection(orders, order => Assert.Equal(109,(order.PostCode/10)));
+            Assert.Collection(orders, order => Assert.StartsWith(109.ToString(), order.PostCode.ToString()));
+            Assert.Collection(orders, order => Assert.Equal(109, (order.PostCode / 10)));
 
         }
         [Fact]
@@ -118,7 +118,7 @@ namespace EverLight.BusinessLogicTest
             Assert.Collection(orders, order => Assert.Equal(order.Id, order.Id));
             Assert.Collection(orders, order => Assert.Null(order.Closed));
             Assert.Collection(orders, order => Assert.True(order.Opened <= DateTime.Today.AddDays(-90)));
-            
+
 
         }
         [Fact]
