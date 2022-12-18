@@ -21,13 +21,13 @@ namespace EverLight.WebModul.Controllers
         {
             return View();
         }
-        public IActionResult CreateOrder(int PostCode, string City, string addres)
+        public IActionResult CreateOrder(int PostCode, string City, string Address)
         {
             var order = new Order()
             {
                 PostCode = PostCode,
                 City = City,
-                Address = addres,
+                Address = Address,
                 Opened = DateTime.Now
             };
             ViewData["ordernumber"] = webBusinessLogic.CreateOrder(order);

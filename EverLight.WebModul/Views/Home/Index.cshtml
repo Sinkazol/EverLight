@@ -1,18 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Hiba bejelentő";
+    ViewData["Title"] = "Hibabejelentő";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Ever Light</h1>
-    <h1 class="display-6" >Hiba bejelentés</h1>
-    <br/>
+    <h1 class="display-4">EverLight</h1>
+    <h1 class="display-6">Hibabejelentés</h1>
+    <br />
     <form action="/home/createOrder " method="get">
-        <label for="PostCode"> irányítószám:</label><br>
-        <input type="text" id="PostCode" name="PostCode" value="1087"><br> 
+        <label for="PostCode"> Irányítószám:</label><br>
+        <input type="text" id="PostCode" name="PostCode"><br>
         <label for="City"> Város:</label><br>
-        <input type="text" id="City" name="City" value="Budapest"><br>
-        <label for="addres">utca , házszám:</label><br>
-        <input type="text" id="addres" name="addres" value="Üllői út 6"><br><br>
-        <input type="submit" value="Küld">
+        <input type="text" id="City" name="City"><br>
+        <label for="addres">Utca, házszám:</label><br>
+        <input type="text" id="Address" name="Address"><br><br>
+        <input type="submit" value="Küldés">
     </form>
 </div>

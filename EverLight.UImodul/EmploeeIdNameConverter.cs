@@ -19,13 +19,10 @@ namespace EverLight.UImodul
         {
             businessLogic = Ioc.Default.GetService<BusinessLayer.BusinessLogic>();
         }
-
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            
             return businessLogic.EmployeeBy((int)value);
         }
-
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Debug.WriteLine("Nincs implementálva");

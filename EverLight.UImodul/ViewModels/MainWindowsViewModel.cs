@@ -29,12 +29,17 @@ namespace EverLight.UImodul.ViewModel
         private Visibility dateSelectionVisible = Visibility.Collapsed;
         [ObservableProperty]
         private Visibility employeeSelectionVisible = Visibility.Visible;
+        [ObservableProperty]
+        private Visibility errorTypeVisibile = Visibility.Visible;
         private int selectedSortType;
         private int selectedMonth;
+        private string selectedError;
         private Employee selectedEmployee;
 
         [ObservableProperty]
         private List<string> monthsNames = new List<string>();
+        [ObservableProperty]
+        private List<string> errorTypes = new List<string>();
         public int SelectedSortType
         {
             get { return selectedSortType; }
@@ -44,6 +49,7 @@ namespace EverLight.UImodul.ViewModel
                 if (selectedSortType != value)
                 {
                     selectedSortType = value;
+
                     
                     if (value == 0)
                     {
@@ -61,7 +67,13 @@ namespace EverLight.UImodul.ViewModel
                     else DateSelectionVisible = Visibility.Collapsed;
                     if (value == 2)
                     {
-                        Orders = businesLogic.GetAll().OrderBy(x=>x.ErrorType).Where(x=>x.Closed!=null).ToList();
+                        ErrorTypeVisibile = Visibility.Visible;
+                        Orders = businesLogic.GetAll().Where(x => x.Closed != null && x.ErrorType==selectedError).ToList();
+                    }
+                    else ErrorTypeVisibile = Visibility.Collapsed;
+                    if (value == 3)
+                    {
+                        Orders = businesLogic.GetAll().Where(x => x.Closed != null).ToList();
                     }
                 }
             }
@@ -91,7 +103,22 @@ namespace EverLight.UImodul.ViewModel
                 {
                     selectedMonth = value;
                     SetProperty(ref selectedMonth, value, "SelectedMonth");
-                    Orders=businesLogic.GetOrdersby(value+1).ToList();
+                    Orders = businesLogic.GetOrdersby(value + 1).ToList();
+                }
+            }
+        }
+
+        public string SelectedError
+        {
+            get { return selectedError; }
+
+            set
+            {
+                if (SelectedError != value)
+                {
+                    selectedError = value;
+                    SetProperty(ref selectedError, value, "SelectedError");
+                    Orders = businesLogic.GetOrdersby(value).ToList();
                 }
             }
         }
@@ -104,15 +131,23 @@ namespace EverLight.UImodul.ViewModel
             List<string> months = new List<string>();
             for (int i = 1; i < 13; i++)
             {
-                months.Add( new DateTime(2010, i, 1)
+                months.Add(new DateTime(2010, i, 1)
                  .ToString("MMMM", CultureInfo.InvariantCulture));
             }
             MonthsNames = months;
-            SelectedMonth= DateTime.Today.Month-1;
+            SelectedMonth = DateTime.Today.Month - 1;
+            
+           
+            ErrorTypes = businesLogic.GetErrorTypes();
+
 
             Employees = businesLogic.GetAllEmployes().ToList();
             SelectedEmployee = Employees.FirstOrDefault();
-            SelectedSortType = 2;
+            if(ErrorTypes.FirstOrDefault() != null)
+            {
+            SelectedError = ErrorTypes.FirstOrDefault();
+            }
+            SelectedSortType = 3;
         }
 
         public void Fill()

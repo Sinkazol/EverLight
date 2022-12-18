@@ -21,23 +21,26 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
             <ComboBox SelectedIndex="{Binding SelectedSortType}" Margin="10">
-                <ComboBoxItem>Listázás Munkatársak szerint</ComboBoxItem>
-                <ComboBoxItem>Listázás havibontás</ComboBoxItem>
+                <ComboBoxItem>Listázás munkatársak szerint</ComboBoxItem>
+                <ComboBoxItem>Listázás havibontásba</ComboBoxItem>
                 <ComboBoxItem>Faladat tipusok szerint</ComboBoxItem>
+                <ComboBoxItem>Az összes lezárt munkalap</ComboBoxItem>
             </ComboBox>
             <ComboBox Margin="10" Visibility="{Binding DateSelectionVisible}" ItemsSource="{Binding MonthsNames}" SelectedIndex="{Binding SelectedMonth}">
             </ComboBox>
             <ComboBox Margin="10" Visibility="{Binding EmployeeSelectionVisible}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
             </ComboBox>
+            <ComboBox Margin="10" Visibility="{Binding ErrorTypeVisibile}" ItemsSource="{Binding ErrorTypes}" SelectedItem="{Binding SelectedError}">
+            </ComboBox>
         </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding Orders}" x:Name="OrderView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Iránzító szám" Width="auto" DisplayMemberBinding="{Binding PostCode}" />
+                    <GridViewColumn Header="Munkalap" Width="100" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Irányítószám" Width="auto" DisplayMemberBinding="{Binding PostCode}" />
                     <GridViewColumn Header="Város" Width="120" DisplayMemberBinding="{Binding City}" />
-                    <GridViewColumn Header="utca házszám" Width="200" DisplayMemberBinding="{Binding Address}" />
-                    <GridViewColumn Header="Hiba jellege" Width="120" DisplayMemberBinding="{Binding ErrorType}" />
+                    <GridViewColumn Header="Utca, házszám" Width="200" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header="Hiba" Width="120" DisplayMemberBinding="{Binding ErrorType}" />
                     <GridViewColumn Header="Létrehozva" Width="150" DisplayMemberBinding="{Binding Opened}" />
                     <GridViewColumn Header="Lezárva" Width="150" DisplayMemberBinding="{Binding Closed}" />
                     <GridViewColumn Header="Munkát végezte" Width="auto" DisplayMemberBinding="{Binding EmployeeId, Converter={StaticResource EmploeeIdNameConverter}}" />

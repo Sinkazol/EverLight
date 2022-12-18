@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace EverLight.ConsoleModul2
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -23,12 +23,12 @@ namespace EverLight.ConsoleModul2
                 {
                    "Izzó csere",
                    "Trafo és gyújtó csere",
-                   "Bura Csere",
-                   "Egyébb"
+                   "Bura csere",
+                   "Egyéb"
                 };
 
             int EmployeeId;
-            Console.Write("Kérem adja meg az azonosító számát: ");
+            Console.Write("Kérem adja meg a dolgozói azonosító számát: ");
             while (!int.TryParse((input = Console.ReadLine()), out EmployeeId) || IsValidId(businessLogic, EmployeeId) == false)
             {
                 Console.WriteLine("nincs ilyen azonosító");
@@ -36,17 +36,17 @@ namespace EverLight.ConsoleModul2
             }
             while (true)
             {
-            EverLight.ConsoleModul1.Program.DrawHeader(Date);
-            EverLight.ConsoleModul1.Program.PrintAllOpenedOrders(businessLogic);
+                EverLight.ConsoleModul1.Program.DrawHeader(Date);
+                EverLight.ConsoleModul1.Program.PrintAllOpenedOrders(businessLogic);
 
                 Console.WriteLine("");
-                Console.WriteLine("Kérem adja meg a munkalap számot :");
+                Console.WriteLine("Kérem adja meg a lezárandó munkalap számot :");
                 int OrderId;
                 while (!int.TryParse((input = Console.ReadLine()), out OrderId) || OrderId <= 0)
                 {
                     if (input == "x") { return; }
 
-                    Console.WriteLine("Rossz formátum kérem adjon meg egy mésikat");
+                    Console.WriteLine("Rossz formátum, kérem adjon meg másikat");
                 }
                 EverLight.ConsoleModul1.Program.DrawHeader(Date);
                 PrintSortedOrder(businessLogic, OrderId);
@@ -59,13 +59,13 @@ namespace EverLight.ConsoleModul2
                 {
                     if (input == "x") { return; }
 
-                    Console.WriteLine("Rossz formátum kérem adjon meg egy másikat");
+                    Console.WriteLine("Rossz formátum, kérem adjon meg másikat");
                 }
                 selectedError = errorTypes[Error - 1];
                 Console.WriteLine(selectedError);
                 businessLogic.CompletOrder(OrderId, EmployeeId, selectedError);
                 Console.WriteLine($"A {OrderId} számú munkalap lezárva ");
-                Console.WriteLine("Akar másik munkalapot leyárni? n=Nem");
+                Console.WriteLine("Akar másik munkalapot lezárni? Enter=Igen n=Nem");
                 if (Console.ReadKey().KeyChar == 'n')
                 {
                     return;
