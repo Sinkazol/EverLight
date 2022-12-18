@@ -77,7 +77,7 @@ namespace EverLight.BusinessLayer
 
         public List<string> GetErrorTypes()
         {
-            return orderRepo.GetAll().Where(x=>x.Closed!=null).Select(x=>x.ErrorType).ToList();
+            return orderRepo.GetAll().Where(x => x.Closed != null).Select(x => x.ErrorType).Distinct().ToList();
         }
     }
 }
