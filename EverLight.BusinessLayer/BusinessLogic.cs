@@ -35,7 +35,7 @@ namespace EverLight.BusinessLayer
 
             else if (input > 100 && input < 124) return orderRepo.GetAll().OrderBy(p => p.PostCode).Where(x => x.PostCode / 10 == input && x.Closed == null);
 
-            else if (input <= 100) return orderRepo.GetAll().OrderBy(d => d.Opened).Where(x => x.Opened <= DateTime.Today.AddDays(-input));
+            else if (input <= 100) return orderRepo.GetAll().OrderBy(d => d.Opened).Where(x => x.Opened <= DateTime.Today.AddDays(-input) && x.Closed == null);
 
             else return orderRepo.GetAll();
         }
